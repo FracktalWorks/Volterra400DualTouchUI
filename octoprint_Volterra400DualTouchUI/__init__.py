@@ -2,6 +2,11 @@
 from __future__ import absolute_import
 
 import octoprint.plugin
+
+from ._version import get_versions
+__version__ = get_versions()['version']
+del get_versions
+
 # import time
 # import subprocess
 # from threading import Timer
@@ -57,7 +62,7 @@ class Volterra400DualTouchUI(octoprint.plugin.StartupPlugin):
 
 
 __plugin_name__ = "Volterra 400 Dual Touch UI"
-__plugin_version__ = "0.0.5"
+__plugin_version__ = __version__
 
 
 def __plugin_load__():
@@ -68,3 +73,4 @@ def __plugin_load__():
     __plugin_hooks__ = {
         "octoprint.plugin.softwareupdate.check_config": __plugin_implementation__.get_update_information
     }
+
