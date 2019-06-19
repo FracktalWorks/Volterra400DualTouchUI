@@ -11,7 +11,7 @@
  * Licence: AGPLv3
 *************************************************************************
 '''
-import mainGUI_volterra400
+import mainGUI_volterra_400_dual
 import keyboard
 import dialog
 import styles
@@ -256,10 +256,10 @@ class ClickableLineEdit(QtGui.QLineEdit):
         self.emit(QtCore.SIGNAL("clicked()"))
 
 
-class MainUiClass(QtGui.QMainWindow, mainGUI_volterra400.Ui_MainWindow):
+class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
     '''
     Main GUI Workhorse, all slots and events defined within
-    The main implementation class that inherits methods, variables etc from mainGUI_volterra400.py and QMainWindow
+    The main implementation class that inherits methods, variables etc from mainGUI_volterra_400_dual.py and QMainWindow
     '''
 
     def setupUi(self, MainWindow):

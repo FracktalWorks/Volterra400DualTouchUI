@@ -32,7 +32,7 @@ import octoprint.plugin
 # 			self.is_running = False
 
 
-class Volterra400TouchUI(octoprint.plugin.StartupPlugin):
+class Volterra400DualTouchUI(octoprint.plugin.StartupPlugin):
     def on_after_startup(self):
         # self.resetInetrval = int(self._settings.get(["resetInetrval"]))
         self._logger.info("TouchUI Plugin Started")
@@ -41,28 +41,28 @@ class Volterra400TouchUI(octoprint.plugin.StartupPlugin):
 
     def get_update_information(self):
         return dict(
-            Volterra400TouchUI=dict(
-                displayName="Volterra400TouchUI",
+            Volterra400DualTouchUI=dict(
+                displayName="Volterra 400 Dual Touch UI",
                 displayVersion=self._plugin_version,
                 # version check: github repository
                 type="github_release",
                 user="FracktalWorks",
-                repo="Volterra400TouchUI",
+                repo="Volterra400DualTouchUI",
                 current=self._plugin_version,
 
                 # update method: pip
-                pip="https://github.com/FracktalWorks/Volterra400TouchUI/archive/{target_version}.zip"
+                pip="https://github.com/FracktalWorks/Volterra400DualTouchUI/archive/{target_version}.zip"
             )
         )
 
 
-__plugin_name__ = "Volterra400 Touch UI"
-__plugin_version__ = "0.0.3"
+__plugin_name__ = "Volterra 400 Dual Touch UI"
+__plugin_version__ = "0.0.5"
 
 
 def __plugin_load__():
     global __plugin_implementation__
-    __plugin_implementation__ = Volterra400TouchUI()
+    __plugin_implementation__ = Volterra400DualTouchUI()
 
     global __plugin_hooks__
     __plugin_hooks__ = {
