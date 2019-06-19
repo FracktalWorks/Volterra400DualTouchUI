@@ -1,0 +1,4 @@
+include README.md
+recursive-include octoprint_Volterra400TouchUI/templates *
+recursive-include octoprint_Volterra400TouchUI/config *
+recursive-include octoprint_Volterra400TouchUI/gcode *
