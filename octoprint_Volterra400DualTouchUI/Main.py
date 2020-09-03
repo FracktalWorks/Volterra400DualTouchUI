@@ -498,9 +498,12 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.setBedTempButton.pressed.connect(lambda: octopiclient.setBedTemperature(self.bedTempSpinBox.value()))
         self.bed60PreheatButton.pressed.connect(lambda: octopiclient.setBedTemperature(target=60))
         self.bed100PreheatButton.pressed.connect(lambda: octopiclient.setBedTemperature(target=100))
-        self.setChamberTempButton.pressed.connect(lambda: octopiclient.gcode(command='M141 S' + str(self.chamberTempSpinBox.value())))
-        self.chamber40PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M141 S40'))
-        self.chamber70PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M141 S70'))
+        self.setChamberTempButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T2 S' + str(self.chamberTempSpinBox.value())))
+        self.chamber40PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T2 S40'))
+        self.chamber70PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M041 T2 S70'))
+        self.setFilboxTempButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T3 S' + str(self.filboxTempSpinBox.value())))
+        self.filbox30PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T3 S30'))
+        self.filbox40PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T3 S40'))
         self.setFlowRateButton.pressed.connect(lambda: octopiclient.flowrate(self.flowRateSpinBox.value()))
         self.setFeedRateButton.pressed.connect(lambda: octopiclient.feedrate(self.feedRateSpinBox.value()))
 
@@ -1929,7 +1932,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             if dialog.WarningOk(self, "Network Disconnected"):
                 return
         self.QRCodeLabel.setPixmap(
-            qrcode.make(json.dumps(qrip), image_factory=Image).pixmap())
+            qrcode.make("http://"+ qrip, image_factory=Image).pixmap())
         self.stackedWidget.setCurrentWidget(self.QRCodePage)
 
 

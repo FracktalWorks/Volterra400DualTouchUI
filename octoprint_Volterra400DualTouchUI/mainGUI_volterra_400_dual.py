@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'g:\FracktalWorks\Volterra400DualTouchUI\octoprint_Volterra400DualTouchUI\mainGUI_volterra_400_dual.ui'
+# Form implementation generated from reading ui file '.\mainGUI_volterra_400_dual.ui'
 #
 # Created by: PyQt4 UI code generator 4.11.4
 #
@@ -6106,7 +6106,7 @@ class Ui_MainWindow(object):
         self.temperatureTab = QtGui.QWidget()
         self.temperatureTab.setObjectName(_fromUtf8("temperatureTab"))
         self.toolLabel = QtGui.QLabel(self.temperatureTab)
-        self.toolLabel.setGeometry(QtCore.QRect(10, 105, 208, 21))
+        self.toolLabel.setGeometry(QtCore.QRect(10, 90, 208, 21))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
         font.setPointSize(14)
@@ -6116,7 +6116,7 @@ class Ui_MainWindow(object):
         self.toolLabel.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.toolLabel.setObjectName(_fromUtf8("toolLabel"))
         self.bedLabel_2 = QtGui.QLabel(self.temperatureTab)
-        self.bedLabel_2.setGeometry(QtCore.QRect(9, 340, 70, 21))
+        self.bedLabel_2.setGeometry(QtCore.QRect(9, 250, 70, 21))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
         font.setPointSize(14)
@@ -6240,7 +6240,7 @@ class Ui_MainWindow(object):
         self.fanOnButton.setFlat(False)
         self.fanOnButton.setObjectName(_fromUtf8("fanOnButton"))
         self.toolTempSpinBox = QtGui.QSpinBox(self.temperatureTab)
-        self.toolTempSpinBox.setGeometry(QtCore.QRect(229, 160, 161, 131))
+        self.toolTempSpinBox.setGeometry(QtCore.QRect(231, 117, 161, 100))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(20)
@@ -6262,7 +6262,7 @@ class Ui_MainWindow(object):
 "\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 50px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
@@ -6285,7 +6285,7 @@ class Ui_MainWindow(object):
 "border-bottom-left-radius: 15px;\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 43px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
@@ -6311,7 +6311,7 @@ class Ui_MainWindow(object):
         self.toolTempSpinBox.setProperty("value", 0)
         self.toolTempSpinBox.setObjectName(_fromUtf8("toolTempSpinBox"))
         self.bedTempSpinBox = QtGui.QSpinBox(self.temperatureTab)
-        self.bedTempSpinBox.setGeometry(QtCore.QRect(237, 363, 161, 131))
+        self.bedTempSpinBox.setGeometry(QtCore.QRect(237, 263, 161, 100))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(20)
@@ -6328,15 +6328,17 @@ class Ui_MainWindow(object):
 "}\n"
 "QSpinBox::up-button {\n"
 "     border: 1px solid rgb(87, 87, 87);\n"
-"\n"
 "border-top-left-radius: 15px;\n"
+"\n"
+"\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 50px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
-"QSpinBox::up-arrow { image: url(./templates/img/arrows.png);\n"
+"QSpinBox::up-arrow { \n"
+"image: url(./templates/img/arrows.png);\n"
 "    width: 40px;\n"
 "     height: 40px;\n"
 "padding: 5px; }\n"
@@ -6354,11 +6356,12 @@ class Ui_MainWindow(object):
 "border-bottom-left-radius: 15px;\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 43px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
-"QSpinBox::down-arrow {image: url(./templates/img/arrows-5.png);\n"
+"QSpinBox::down-arrow {\n"
+"image: url(./templates/img/arrows-5.png);\n"
 "    width: 40px;\n"
 "     height: 40px;\n"
 "padding: 5px;\n"
@@ -6379,7 +6382,7 @@ class Ui_MainWindow(object):
         self.bedTempSpinBox.setProperty("value", 0)
         self.bedTempSpinBox.setObjectName(_fromUtf8("bedTempSpinBox"))
         self.setToolTempButton = QtGui.QPushButton(self.temperatureTab)
-        self.setToolTempButton.setGeometry(QtCore.QRect(388, 160, 71, 130))
+        self.setToolTempButton.setGeometry(QtCore.QRect(390, 118, 71, 98))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -6413,7 +6416,7 @@ class Ui_MainWindow(object):
         self.setToolTempButton.setIconSize(QtCore.QSize(50, 50))
         self.setToolTempButton.setObjectName(_fromUtf8("setToolTempButton"))
         self.setBedTempButton = QtGui.QPushButton(self.temperatureTab)
-        self.setBedTempButton.setGeometry(QtCore.QRect(396, 365, 71, 127))
+        self.setBedTempButton.setGeometry(QtCore.QRect(396, 264, 71, 98))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -6447,7 +6450,7 @@ class Ui_MainWindow(object):
         self.setBedTempButton.setIconSize(QtCore.QSize(50, 50))
         self.setBedTempButton.setObjectName(_fromUtf8("setBedTempButton"))
         self.toolToggleTemperatureButton = QtGui.QPushButton(self.temperatureTab)
-        self.toolToggleTemperatureButton.setGeometry(QtCore.QRect(10, 143, 105, 169))
+        self.toolToggleTemperatureButton.setGeometry(QtCore.QRect(10, 120, 105, 100))
         self.toolToggleTemperatureButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6489,7 +6492,7 @@ class Ui_MainWindow(object):
         self.toolToggleTemperatureButton.setFlat(False)
         self.toolToggleTemperatureButton.setObjectName(_fromUtf8("toolToggleTemperatureButton"))
         self.tool250PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.tool250PreheatButton.setGeometry(QtCore.QRect(130, 247, 90, 62))
+        self.tool250PreheatButton.setGeometry(QtCore.QRect(130, 171, 90, 50))
         self.tool250PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6526,7 +6529,7 @@ class Ui_MainWindow(object):
         self.tool250PreheatButton.setFlat(False)
         self.tool250PreheatButton.setObjectName(_fromUtf8("tool250PreheatButton"))
         self.tool180PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.tool180PreheatButton.setGeometry(QtCore.QRect(130, 145, 90, 55))
+        self.tool180PreheatButton.setGeometry(QtCore.QRect(130, 122, 90, 50))
         self.tool180PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6563,43 +6566,8 @@ class Ui_MainWindow(object):
         self.tool180PreheatButton.setDefault(False)
         self.tool180PreheatButton.setFlat(False)
         self.tool180PreheatButton.setObjectName(_fromUtf8("tool180PreheatButton"))
-        self.tool220PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.tool220PreheatButton.setGeometry(QtCore.QRect(130, 195, 90, 55))
-        self.tool220PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
-        font = QtGui.QFont()
-        font.setFamily(_fromUtf8("Gotham"))
-        font.setPointSize(15)
-        self.tool220PreheatButton.setFont(font)
-        self.tool220PreheatButton.setStyleSheet(_fromUtf8("QPushButton {\n"
-"     border: 1px solid rgb(87, 87, 87);\n"
-"\n"
-"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
-"}\n"
-"\n"
-"QPushButton:pressed {\n"
-"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
-"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
-"}\n"
-"\n"
-"QPushButton:flat {\n"
-"    border: none; /* no border for a flat push button */\n"
-"}\n"
-"\n"
-"QPushButton:default {\n"
-"    border-color: navy; /* make the default button prominent */\n"
-"}\n"
-"\n"
-"QPushButton:focus {\n"
-"    outline: none;\n"
-"}"))
-        self.tool220PreheatButton.setIconSize(QtCore.QSize(40, 40))
-        self.tool220PreheatButton.setCheckable(False)
-        self.tool220PreheatButton.setAutoDefault(False)
-        self.tool220PreheatButton.setDefault(False)
-        self.tool220PreheatButton.setFlat(False)
-        self.tool220PreheatButton.setObjectName(_fromUtf8("tool220PreheatButton"))
         self.bed60PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.bed60PreheatButton.setGeometry(QtCore.QRect(130, 370, 90, 62))
+        self.bed60PreheatButton.setGeometry(QtCore.QRect(130, 270, 90, 50))
         self.bed60PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6637,7 +6605,7 @@ class Ui_MainWindow(object):
         self.bed60PreheatButton.setFlat(False)
         self.bed60PreheatButton.setObjectName(_fromUtf8("bed60PreheatButton"))
         self.bed100PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.bed100PreheatButton.setGeometry(QtCore.QRect(130, 431, 90, 64))
+        self.bed100PreheatButton.setGeometry(QtCore.QRect(130, 319, 90, 50))
         self.bed100PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6674,7 +6642,7 @@ class Ui_MainWindow(object):
         self.bed100PreheatButton.setFlat(False)
         self.bed100PreheatButton.setObjectName(_fromUtf8("bed100PreheatButton"))
         self.chamber70PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.chamber70PreheatButton.setGeometry(QtCore.QRect(130, 620, 90, 64))
+        self.chamber70PreheatButton.setGeometry(QtCore.QRect(130, 478, 90, 50))
         self.chamber70PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6711,7 +6679,7 @@ class Ui_MainWindow(object):
         self.chamber70PreheatButton.setFlat(False)
         self.chamber70PreheatButton.setObjectName(_fromUtf8("chamber70PreheatButton"))
         self.chamberTempSpinBox = QtGui.QSpinBox(self.temperatureTab)
-        self.chamberTempSpinBox.setGeometry(QtCore.QRect(231, 558, 161, 131))
+        self.chamberTempSpinBox.setGeometry(QtCore.QRect(231, 428, 161, 100))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(20)
@@ -6728,15 +6696,17 @@ class Ui_MainWindow(object):
 "}\n"
 "QSpinBox::up-button {\n"
 "     border: 1px solid rgb(87, 87, 87);\n"
-"\n"
 "border-top-left-radius: 15px;\n"
+"\n"
+"\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 50px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
-"QSpinBox::up-arrow { image: url(./templates/img/arrows.png);\n"
+"QSpinBox::up-arrow { \n"
+"image: url(./templates/img/arrows.png);\n"
 "    width: 40px;\n"
 "     height: 40px;\n"
 "padding: 5px; }\n"
@@ -6754,11 +6724,12 @@ class Ui_MainWindow(object):
 "border-bottom-left-radius: 15px;\n"
 "    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
 "    width: 60px;\n"
-"     height: 61px;\n"
+"     height: 43px;\n"
 "    padding: 2px;\n"
 "}\n"
 "\n"
-"QSpinBox::down-arrow {image: url(./templates/img/arrows-5.png);\n"
+"QSpinBox::down-arrow {\n"
+"image: url(./templates/img/arrows-5.png);\n"
 "    width: 40px;\n"
 "     height: 40px;\n"
 "padding: 5px;\n"
@@ -6779,7 +6750,7 @@ class Ui_MainWindow(object):
         self.chamberTempSpinBox.setProperty("value", 0)
         self.chamberTempSpinBox.setObjectName(_fromUtf8("chamberTempSpinBox"))
         self.setChamberTempButton = QtGui.QPushButton(self.temperatureTab)
-        self.setChamberTempButton.setGeometry(QtCore.QRect(390, 560, 71, 127))
+        self.setChamberTempButton.setGeometry(QtCore.QRect(390, 429, 71, 98))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
         font.setPointSize(13)
@@ -6813,7 +6784,7 @@ class Ui_MainWindow(object):
         self.setChamberTempButton.setIconSize(QtCore.QSize(50, 50))
         self.setChamberTempButton.setObjectName(_fromUtf8("setChamberTempButton"))
         self.chamber40PreheatButton = QtGui.QPushButton(self.temperatureTab)
-        self.chamber40PreheatButton.setGeometry(QtCore.QRect(130, 559, 90, 62))
+        self.chamber40PreheatButton.setGeometry(QtCore.QRect(130, 429, 90, 50))
         self.chamber40PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham"))
@@ -6851,7 +6822,7 @@ class Ui_MainWindow(object):
         self.chamber40PreheatButton.setFlat(False)
         self.chamber40PreheatButton.setObjectName(_fromUtf8("chamber40PreheatButton"))
         self.bedLabel_4 = QtGui.QLabel(self.temperatureTab)
-        self.bedLabel_4.setGeometry(QtCore.QRect(9, 530, 124, 21))
+        self.bedLabel_4.setGeometry(QtCore.QRect(9, 400, 124, 21))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Light"))
         font.setPointSize(14)
@@ -6861,7 +6832,7 @@ class Ui_MainWindow(object):
         self.bedLabel_4.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
         self.bedLabel_4.setObjectName(_fromUtf8("bedLabel_4"))
         self.chamberLabel_2 = QtGui.QLabel(self.temperatureTab)
-        self.chamberLabel_2.setGeometry(QtCore.QRect(10, 600, 80, 80))
+        self.chamberLabel_2.setGeometry(QtCore.QRect(10, 450, 80, 80))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Medium"))
         font.setPointSize(14)
@@ -6878,7 +6849,7 @@ class Ui_MainWindow(object):
         self.chamberLabel_2.setScaledContents(True)
         self.chamberLabel_2.setObjectName(_fromUtf8("chamberLabel_2"))
         self.bedLabel_3 = QtGui.QLabel(self.temperatureTab)
-        self.bedLabel_3.setGeometry(QtCore.QRect(10, 400, 80, 80))
+        self.bedLabel_3.setGeometry(QtCore.QRect(10, 290, 80, 80))
         font = QtGui.QFont()
         font.setFamily(_fromUtf8("Gotham Medium"))
         font.setPointSize(14)
@@ -6895,12 +6866,12 @@ class Ui_MainWindow(object):
         self.bedLabel_3.setScaledContents(True)
         self.bedLabel_3.setObjectName(_fromUtf8("bedLabel_3"))
         self.line = QtGui.QFrame(self.temperatureTab)
-        self.line.setGeometry(QtCore.QRect(12, 320, 455, 16))
+        self.line.setGeometry(QtCore.QRect(10, 230, 455, 16))
         self.line.setFrameShape(QtGui.QFrame.HLine)
         self.line.setFrameShadow(QtGui.QFrame.Sunken)
         self.line.setObjectName(_fromUtf8("line"))
         self.line_2 = QtGui.QFrame(self.temperatureTab)
-        self.line_2.setGeometry(QtCore.QRect(11, 510, 455, 16))
+        self.line_2.setGeometry(QtCore.QRect(11, 380, 455, 16))
         self.line_2.setFrameShape(QtGui.QFrame.HLine)
         self.line_2.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_2.setObjectName(_fromUtf8("line_2"))
@@ -6909,6 +6880,218 @@ class Ui_MainWindow(object):
         self.line_3.setFrameShape(QtGui.QFrame.HLine)
         self.line_3.setFrameShadow(QtGui.QFrame.Sunken)
         self.line_3.setObjectName(_fromUtf8("line_3"))
+        self.setFilboxTempButton = QtGui.QPushButton(self.temperatureTab)
+        self.setFilboxTempButton.setGeometry(QtCore.QRect(390, 599, 71, 98))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(13)
+        self.setFilboxTempButton.setFont(font)
+        self.setFilboxTempButton.setStyleSheet(_fromUtf8("QPushButton {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"border-top-right-radius: 15px;\n"
+"border-bottom-right-radius: 15px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"}"))
+        self.setFilboxTempButton.setText(_fromUtf8(""))
+        self.setFilboxTempButton.setIcon(icon16)
+        self.setFilboxTempButton.setIconSize(QtCore.QSize(50, 50))
+        self.setFilboxTempButton.setObjectName(_fromUtf8("setFilboxTempButton"))
+        self.bedLabel_5 = QtGui.QLabel(self.temperatureTab)
+        self.bedLabel_5.setGeometry(QtCore.QRect(9, 570, 124, 21))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Light"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setWeight(50)
+        self.bedLabel_5.setFont(font)
+        self.bedLabel_5.setStyleSheet(_fromUtf8("color: rgb(255, 255, 255);"))
+        self.bedLabel_5.setObjectName(_fromUtf8("bedLabel_5"))
+        self.filboxTempSpinBox = QtGui.QSpinBox(self.temperatureTab)
+        self.filboxTempSpinBox.setGeometry(QtCore.QRect(231, 598, 161, 100))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(20)
+        self.filboxTempSpinBox.setFont(font)
+        self.filboxTempSpinBox.setStyleSheet(_fromUtf8("QSpinBox {\n"
+"    padding-right: 5px; /* make room for the arrows */\n"
+"    color: rgb(255, 255, 255);\n"
+"    background-color: rgba(255, 255, 255, 0);\n"
+"   \n"
+"}\n"
+"QSpinBox ::text:selected {\n"
+"    background-color: rgb(255, 146, 57);\n"
+"   \n"
+"}\n"
+"QSpinBox::up-button {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"border-top-left-radius: 15px;\n"
+"\n"
+"\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    width: 60px;\n"
+"     height: 50px;\n"
+"    padding: 2px;\n"
+"}\n"
+"\n"
+"QSpinBox::up-arrow { \n"
+"image: url(./templates/img/arrows.png);\n"
+"    width: 40px;\n"
+"     height: 40px;\n"
+"padding: 5px; }\n"
+"\n"
+"\n"
+"\n"
+"QSpinBox::up-button:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"\n"
+"QSpinBox::down-button {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"border-bottom-left-radius: 15px;\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    width: 60px;\n"
+"     height: 43px;\n"
+"    padding: 2px;\n"
+"}\n"
+"\n"
+"QSpinBox::down-arrow {\n"
+"image: url(./templates/img/arrows-5.png);\n"
+"    width: 40px;\n"
+"     height: 40px;\n"
+"padding: 5px;\n"
+"}\n"
+"\n"
+"QSpinBox::down-button:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"\n"
+"}\n"
+"\n"
+""))
+        self.filboxTempSpinBox.setReadOnly(False)
+        self.filboxTempSpinBox.setButtonSymbols(QtGui.QAbstractSpinBox.UpDownArrows)
+        self.filboxTempSpinBox.setAccelerated(True)
+        self.filboxTempSpinBox.setMaximum(50)
+        self.filboxTempSpinBox.setSingleStep(1)
+        self.filboxTempSpinBox.setProperty("value", 0)
+        self.filboxTempSpinBox.setObjectName(_fromUtf8("filboxTempSpinBox"))
+        self.filbox40PreheatButton = QtGui.QPushButton(self.temperatureTab)
+        self.filbox40PreheatButton.setGeometry(QtCore.QRect(130, 648, 90, 50))
+        self.filbox40PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(15)
+        self.filbox40PreheatButton.setFont(font)
+        self.filbox40PreheatButton.setStyleSheet(_fromUtf8("QPushButton {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    border-bottom-right-radius: 15px;\n"
+"border-bottom-left-radius: 15px;\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"}"))
+        self.filbox40PreheatButton.setIconSize(QtCore.QSize(40, 40))
+        self.filbox40PreheatButton.setCheckable(False)
+        self.filbox40PreheatButton.setAutoDefault(False)
+        self.filbox40PreheatButton.setDefault(False)
+        self.filbox40PreheatButton.setFlat(False)
+        self.filbox40PreheatButton.setObjectName(_fromUtf8("filbox40PreheatButton"))
+        self.filbox30PreheatButton = QtGui.QPushButton(self.temperatureTab)
+        self.filbox30PreheatButton.setGeometry(QtCore.QRect(130, 599, 90, 50))
+        self.filbox30PreheatButton.setMinimumSize(QtCore.QSize(0, 0))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(15)
+        self.filbox30PreheatButton.setFont(font)
+        self.filbox30PreheatButton.setStyleSheet(_fromUtf8("QPushButton {\n"
+"     border: 1px solid rgb(87, 87, 87);\n"
+"\n"
+"    background-color: qlineargradient(spread:pad, x1:0, y1:1, x2:0, y2:0.188, stop:0 rgba(180, 180, 180, 255), stop:1 rgba(255, 255, 255, 255));\n"
+"    border-top-right-radius: 15px;\n"
+"border-top-left-radius: 15px;\n"
+"\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: qlineargradient(x1: 0, y1: 0, x2: 0, y2: 1,\n"
+"                                      stop: 0 #dadbde, stop: 1 #f6f7fa);\n"
+"}\n"
+"\n"
+"QPushButton:flat {\n"
+"    border: none; /* no border for a flat push button */\n"
+"}\n"
+"\n"
+"QPushButton:default {\n"
+"    border-color: navy; /* make the default button prominent */\n"
+"}\n"
+"\n"
+"QPushButton:focus {\n"
+"    outline: none;\n"
+"}"))
+        self.filbox30PreheatButton.setIconSize(QtCore.QSize(40, 40))
+        self.filbox30PreheatButton.setCheckable(False)
+        self.filbox30PreheatButton.setAutoDefault(False)
+        self.filbox30PreheatButton.setDefault(False)
+        self.filbox30PreheatButton.setFlat(False)
+        self.filbox30PreheatButton.setObjectName(_fromUtf8("filbox30PreheatButton"))
+        self.chamberLabel_3 = QtGui.QLabel(self.temperatureTab)
+        self.chamberLabel_3.setGeometry(QtCore.QRect(10, 620, 80, 80))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham Medium"))
+        font.setPointSize(14)
+        font.setBold(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        self.chamberLabel_3.setFont(font)
+        self.chamberLabel_3.setStyleSheet(_fromUtf8("\n"
+"   color:  white;\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.chamberLabel_3.setText(_fromUtf8(""))
+        self.chamberLabel_3.setPixmap(QtGui.QPixmap(_fromUtf8("templates/img/spoolHeating.png")))
+        self.chamberLabel_3.setScaledContents(True)
+        self.chamberLabel_3.setObjectName(_fromUtf8("chamberLabel_3"))
+        self.line_15 = QtGui.QFrame(self.temperatureTab)
+        self.line_15.setGeometry(QtCore.QRect(10, 540, 455, 16))
+        self.line_15.setFrameShape(QtGui.QFrame.HLine)
+        self.line_15.setFrameShadow(QtGui.QFrame.Sunken)
+        self.line_15.setObjectName(_fromUtf8("line_15"))
         self.toolLabel.raise_()
         self.bedLabel_2.raise_()
         self.cooldownButton.raise_()
@@ -6921,7 +7104,6 @@ class Ui_MainWindow(object):
         self.toolToggleTemperatureButton.raise_()
         self.tool250PreheatButton.raise_()
         self.tool180PreheatButton.raise_()
-        self.tool220PreheatButton.raise_()
         self.bed60PreheatButton.raise_()
         self.bed100PreheatButton.raise_()
         self.chamber70PreheatButton.raise_()
@@ -6934,6 +7116,13 @@ class Ui_MainWindow(object):
         self.line.raise_()
         self.line_2.raise_()
         self.line_3.raise_()
+        self.setFilboxTempButton.raise_()
+        self.bedLabel_5.raise_()
+        self.filboxTempSpinBox.raise_()
+        self.filbox40PreheatButton.raise_()
+        self.filbox30PreheatButton.raise_()
+        self.chamberLabel_3.raise_()
+        self.line_15.raise_()
         icon28 = QtGui.QIcon()
         icon28.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/thermometer.png")), QtGui.QIcon.Normal, QtGui.QIcon.Off)
         icon28.addPixmap(QtGui.QPixmap(_fromUtf8("templates/img/thermometer_Selected.png")), QtGui.QIcon.Normal, QtGui.QIcon.On)
@@ -8551,13 +8740,16 @@ class Ui_MainWindow(object):
         self.bedTempSpinBox.setSuffix(_translate("MainWindow", "°C", None))
         self.tool250PreheatButton.setText(_translate("MainWindow", "250°C", None))
         self.tool180PreheatButton.setText(_translate("MainWindow", "180°C", None))
-        self.tool220PreheatButton.setText(_translate("MainWindow", "220°C", None))
         self.bed60PreheatButton.setText(_translate("MainWindow", "60°C", None))
         self.bed100PreheatButton.setText(_translate("MainWindow", "100°C", None))
         self.chamber70PreheatButton.setText(_translate("MainWindow", "70°C", None))
         self.chamberTempSpinBox.setSuffix(_translate("MainWindow", "°C", None))
         self.chamber40PreheatButton.setText(_translate("MainWindow", "40°C", None))
         self.bedLabel_4.setText(_translate("MainWindow", "Chamber:", None))
+        self.bedLabel_5.setText(_translate("MainWindow", "Filament:", None))
+        self.filboxTempSpinBox.setSuffix(_translate("MainWindow", "°C", None))
+        self.filbox40PreheatButton.setText(_translate("MainWindow", "40°C", None))
+        self.filbox30PreheatButton.setText(_translate("MainWindow", "30°C", None))
         self.step1Button.setText(_translate("MainWindow", "1 mm", None))
         self.step10Button.setText(_translate("MainWindow", "10 mm", None))
         self.step100Button.setText(_translate("MainWindow", "100 mm", None))
