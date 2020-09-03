@@ -1656,12 +1656,14 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         Turns all heaters and fans off
         '''
         octopiclient.gcode(command='M107')
-        octopiclient.setToolTemperature({"tool0": 0, "tool1": 0})
+        octopiclient.setToolTemperature({"tool0": 0, "tool1": 0,"tool2": 0, "tool3": 0})
         # octopiclient.setToolTemperature({"tool0": 0})
         octopiclient.setBedTemperature(0)
-        octopiclient.gcode(command='M141 S0')
+        #octopiclient.gcode(command='M141 S0')
         self.toolTempSpinBox.setProperty("value", 0)
         self.bedTempSpinBox.setProperty("value", 0)
+        self.chamberTempSpinBox.setProperty("value", 0)
+        self.filboxTempSpinBox.setProperty("value", 0)
 
     ''' +++++++++++++++++++++++++++++++++++Calibration++++++++++++++++++++++++++++++++ '''
 
@@ -2063,10 +2065,10 @@ class QtWebsocket(QtCore.QThread):
                                     'tool1Target': temp(data, "tool1", "target"),
                                     'bedActual': temp(data, "bed", "actual"),
                                     'bedTarget': temp(data, "bed", "target"),
-                                    'chamberActual': temp(data, "chamber", "actual"),
-                                    'chamberTarget': temp(data, "chamber", "target"),
-                                    'filboxActual': temp(data, "filbox", "actual"),
-                                    'filboxTarget': temp(data, "filbox", "target")}
+                                    'chamberActual': temp(data, "tool2", "actual"),
+                                    'chamberTarget': temp(data, "tool2", "target"),
+                                    'filboxActual': temp(data, "tool3", "actual"),
+                                    'filboxTarget': temp(data, "tool3", "target")}
                     self.emit(QtCore.SIGNAL('TEMPERATURES'), temperatures)
                 except KeyError:
                     # temperatures = {'tool0Actual': 0,
