@@ -493,7 +493,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.controlBackButton.pressed.connect(lambda: self.stackedWidget.setCurrentWidget(self.homePage))
         self.setToolTempButton.pressed.connect(self.setToolTemp)
         self.tool180PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T1 S180') if self.toolToggleTemperatureButton.isChecked() else octopiclient.gcode(command='M104 T0 S180'))
-        self.tool220PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T1 S220') if self.toolToggleTemperatureButton.isChecked() else octopiclient.gcode(command='M104 T0 S220'))
+        #self.tool220PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T1 S220') if self.toolToggleTemperatureButton.isChecked() else octopiclient.gcode(command='M104 T0 S220'))
         self.tool250PreheatButton.pressed.connect(lambda: octopiclient.gcode(command='M104 T1 S250') if self.toolToggleTemperatureButton.isChecked() else octopiclient.gcode(command='M104 T0 S250'))
         self.setBedTempButton.pressed.connect(lambda: octopiclient.setBedTemperature(self.bedTempSpinBox.value()))
         self.bed60PreheatButton.pressed.connect(lambda: octopiclient.setBedTemperature(target=60))
@@ -1619,6 +1619,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             self.toolTempSpinBox.setProperty("value", float(self.tool0TargetTemperature.text()))
         self.bedTempSpinBox.setProperty("value", float(self.bedTargetTemperature.text()))
         self.chamberTempSpinBox.setProperty("value", float(self.chamberTargetTemperature.text()))
+        self.filboxTempSpinBox.setProperty("value", float(self.filboxTargetTemperature.text()))
+
 
     def setStep(self, stepRate):
         '''
@@ -1663,7 +1665,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.toolTempSpinBox.setProperty("value", 0)
         self.bedTempSpinBox.setProperty("value", 0)
         self.chamberTempSpinBox.setProperty("value", 0)
-        self.filboxTempSpinBox.setProperty("value", 0)
+        self.chamberTempSpinBox.setProperty
 
     ''' +++++++++++++++++++++++++++++++++++Calibration++++++++++++++++++++++++++++++++ '''
 
@@ -2116,9 +2118,9 @@ class ThreadSanityCheck(QtCore.QThread):
                 result = result.split('\n')  # each ssid and pass from an item in a list ([ssid pass,ssid paas])
                 result = [s.strip() for s in result]
                 for line in result:
-                    if 'cdc_acm' in line:
-                        self.MKSPort = line[line.index('ttyACM'):line.index('ttyACM') + 7]
-                        print(self.MKSPort)
+                    if 'FTDI' in line:
+                        self.MKSPort = line[line.index('ttyUSB'):line.index('ttyUSB') + 7]
+                        print self.MKSPort
 
                 if not self.MKSPort:
                     octopiclient.connectPrinter(port="VIRTUAL", baudrate=115200)
