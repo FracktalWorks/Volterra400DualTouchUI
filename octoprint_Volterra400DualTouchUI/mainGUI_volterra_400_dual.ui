@@ -12305,7 +12305,7 @@ QSpinBox::down-button:pressed {
          <string>°C</string>
         </property>
         <property name="maximum">
-         <number>50</number>
+         <number>60</number>
         </property>
         <property name="singleStep">
          <number>1</number>

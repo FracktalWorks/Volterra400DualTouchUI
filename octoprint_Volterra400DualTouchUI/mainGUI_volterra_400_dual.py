@@ -6991,7 +6991,7 @@ class Ui_MainWindow(object):
         self.filboxTempSpinBox.setReadOnly(False)
         self.filboxTempSpinBox.setButtonSymbols(QtGui.QAbstractSpinBox.UpDownArrows)
         self.filboxTempSpinBox.setAccelerated(True)
-        self.filboxTempSpinBox.setMaximum(50)
+        self.filboxTempSpinBox.setMaximum(60)
         self.filboxTempSpinBox.setSingleStep(1)
         self.filboxTempSpinBox.setProperty("value", 0)
         self.filboxTempSpinBox.setObjectName(_fromUtf8("filboxTempSpinBox"))
