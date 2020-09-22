@@ -1714,8 +1714,8 @@ background-color: rgba(255, 255, 255, 0);</string>
       </property>
       <property name="font">
        <font>
-        <family>Gotham Light</family>
-        <pointsize>8</pointsize>
+        <family>Gotham</family>
+        <pointsize>7</pointsize>
        </font>
       </property>
       <property name="styleSheet">
@@ -1746,7 +1746,7 @@ QToolButton:default {
 }</string>
       </property>
       <property name="text">
-       <string>Unlock Door</string>
+       <string>Toggle Door</string>
       </property>
       <property name="icon">
        <iconset>
@@ -1804,10 +1804,10 @@ QToolButton:default {
       </property>
       <property name="geometry">
        <rect>
-        <x>440</x>
-        <y>4</y>
-        <width>41</width>
-        <height>61</height>
+        <x>450</x>
+        <y>0</y>
+        <width>21</width>
+        <height>31</height>
        </rect>
       </property>
       <property name="font">
@@ -1820,9 +1820,10 @@ QToolButton:default {
       <property name="styleSheet">
        <string notr="true">
 background-color: rgba(255, 255, 255, 0);
-color: rgb(255, 40, 10);
+color:  qlineargradient(spread:pad, x1:0.517, y1:0, x2:0.522, y2:0, stop:0.0336134 rgba(74, 183, 255, 255), stop:1 rgba(53, 173, 242, 255));;
 font-size: 18pt;
-font-weight: bold;</string>
+font-weight: bold;
+</string>
       </property>
       <property name="text">
        <string>V</string>
@@ -1832,6 +1833,42 @@ font-weight: bold;</string>
       </property>
       <property name="alignment">
        <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+      <property name="wordWrap">
+       <bool>true</bool>
+      </property>
+     </widget>
+     <widget class="QLabel" name="ipStatus">
+      <property name="geometry">
+       <rect>
+        <x>348</x>
+        <y>50</y>
+        <width>131</width>
+        <height>20</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <family>Gotham</family>
+        <pointsize>9</pointsize>
+        <weight>50</weight>
+        <bold>false</bold>
+        <underline>false</underline>
+        <strikeout>false</strikeout>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">
+background-color: rgba(255, 255, 255, 0);</string>
+      </property>
+      <property name="text">
+       <string>Not Connected</string>
+      </property>
+      <property name="scaledContents">
+       <bool>true</bool>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignRight|Qt::AlignTop|Qt::AlignTrailing</set>
       </property>
       <property name="wordWrap">
        <bool>true</bool>
@@ -1883,6 +1920,7 @@ font-weight: bold;</string>
      <zorder>line_8</zorder>
      <zorder>line_9</zorder>
      <zorder>virtualPrinterMode</zorder>
+     <zorder>ipStatus</zorder>
     </widget>
     <widget class="QWidget" name="MenuPage">
      <widget class="QPushButton" name="menuBackButton">

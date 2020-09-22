@@ -212,12 +212,23 @@ class octoprintAPI:
 
     def pausePrint(self):
         '''
-        Pauses/unpauses the current print job
+        Pauses the current print job
 
         There must be an active print job for this to work
         '''
         url = 'http://' + self.ip + '/api/job'
-        payload = {'command': 'pause'}
+        payload = {"command": "pause", "action": "pause"}
+        headers = {'content-type': 'application/json', 'X-Api-Key': self.apiKey}
+        requests.post(url, data=json.dumps(payload), headers=headers)
+
+    def resumePrint(self):
+        '''
+        Resume the current print job
+
+        There must be an active print job for this to work
+        '''
+        url = 'http://' + self.ip + '/api/job'
+        payload = {"command": "pause", "action": "resume"}
         headers = {'content-type': 'application/json', 'X-Api-Key': self.apiKey}
         requests.post(url, data=json.dumps(payload), headers=headers)
 
@@ -663,12 +674,11 @@ class octoprintAPI:
         headers = {'content-type': 'application/json', 'X-Api-Key': self.apiKey}
         payload = {'restore': restore, "interval" : interval, "enabled": enabled}
         requests.post(url, data=json.dumps(payload), headers=headers)
-
     def overrideDoorLock(self):
         '''
         locks and unlocks the front door, needs Volterra plugin installed
         '''
-        url = 'http://' + self.ip + '/plugin/VolterraVAS/lock_override'
+        url = 'http://' + self.ip + '/plugin/VolterraServices/lock_override'
         headers = {'content-type': 'application/json', 'X-Api-Key': self.apiKey}
         temp = requests.get(url, headers=headers)
         return temp

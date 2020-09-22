@@ -339,6 +339,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.stackedWidget.setCurrentWidget(MainWindow.homePage)
         self.isFilamentSensorInstalled()
         self.virtualPrinterMode.setVisible(virtual)
+        self.setIPStatus()
 
     def setActions(self):
 
@@ -601,6 +602,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
 
     def onServerConnected(self):
         self.isFilamentSensorInstalled()
+        # if not self.__timelapse_enabled:
+        #     return
+        # if self.__timelapse_started:
+        #     return
         try:
             response = octopiclient.isFailureDetected()
             if response["canRestore"] is True:
@@ -612,12 +617,13 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
 
     ''' +++++++++++++++++++++++++Filament Sensor++++++++++++++++++++++++++++++++++++++ '''
 
+
     def isFilamentSensorInstalled(self):
         success = False
         try:
             headers = {'X-Api-Key': apiKey}
-            req = requests.get('http://{}/plugin/VolterraFilamentSensor/status'.format(ip), headers=headers)
-            success = req.status_code == requests.codes.no_content
+            req = requests.get('http://{}/plugin/Julia2018FilamentSensor/status'.format(ip), headers=headers)
+            success = req.status_code == requests.codes.ok
         except:
             pass
         self.toggleFilamentSensorButton.setEnabled(success)
@@ -626,7 +632,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
     def toggleFilamentSensor(self):
         headers = {'X-Api-Key': apiKey}
         # payload = {'sensor_enabled': self.toggleFilamentSensorButton.isChecked()}
-        requests.get('http://{}/plugin/VolterraFilamentSensor/toggle'.format(ip), headers=headers)   # , data=payload)
+        requests.get('http://{}/plugin/Julia2018FilamentSensor/toggle'.format(ip), headers=headers)   # , data=payload)
 
     def filamentSensorHandler(self, data):
         sensor_enabled = False
@@ -636,36 +642,54 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             sensor_enabled = data["sensor_enabled"] == 1
 
         icon = 'filamentSensorOn' if sensor_enabled else 'filamentSensorOff'
-        self.toggleFilamentSensorButton.setIcon(QtGui.QIcon(_fromUtf8("templates/img/" + icon + ".png")))
+        self.toggleFilamentSensorButton.setIcon(QtGui.QIcon(_fromUtf8("templates/img/" + icon)))
 
         if not sensor_enabled:
             return
 
         triggered_extruder0 = False
         triggered_extruder1 = False
+        triggered_door = False
+        pause_print = False
 
-        if 'extruder0' in data:
+        if 'filament' in data:
+            triggered_extruder0 = data["filament"] == 0
+        elif 'extruder0' in data:
             triggered_extruder0 = data["extruder0"] == 0
 
-        if 'extruder1' in data:
+        if 'filament2' in data:
+            triggered_extruder1 = data["filament2"] == 0
+        elif 'extruder0' in data:
             triggered_extruder1 = data["extruder1"] == 0
 
-        if triggered_extruder0 or triggered_extruder1:
-            if triggered_extruder0 and triggered_extruder1:
-                msg = "Filament outage in both Extruders"
-            elif triggered_extruder0:
-                msg = "Filament outage in Extruder 0"
-            else:
-                msg = "Filament outage in Extruder 1"
+        if 'door' in data:
+            triggered_door = data["door"] == 0
+        if 'pause_print' in data:
+            pause_print = data["pause_print"]
 
-            if self.dialog_filamentsensor:
-                self.dialog_filamentsensor.close()
-                self.dialog_filamentsensor = None
-
-            self.dialog_filamentsensor = dialog.dialog(self, msg, icon="exclamation-mark.png")
-            if self.dialog_filamentsensor.exec_() == QtGui.QMessageBox.Ok:
-                self.dialog_filamentsensor = None
+        if triggered_extruder0 and self.stackedWidget.currentWidget() not in [self.changeFilamentPage, self.changeFilamentProgressPage,
+                                  self.changeFilamentExtrudePage, self.changeFilamentRetractPage]:
+            if dialog.WarningOk(self, "Filament outage in Extruder 0"):
                 pass
+
+        if triggered_extruder1 and self.stackedWidget.currentWidget() not in [self.changeFilamentPage, self.changeFilamentProgressPage,
+                                  self.changeFilamentExtrudePage, self.changeFilamentRetractPage]:
+            if dialog.WarningOk(self, "Filament outage in Extruder 1"):
+                pass
+
+        if triggered_door:
+            if self.printerStatusText == "Printing":
+                no_pause_pages = [self.controlPage, self.changeFilamentPage, self.changeFilamentProgressPage,
+                                  self.changeFilamentExtrudePage, self.changeFilamentRetractPage]
+                if not pause_print or self.stackedWidget.currentWidget() in no_pause_pages:
+                    if dialog.WarningOk(self, "Door opened"):
+                        return
+                octopiclient.pausePrint()
+                if dialog.WarningOk(self, "Door opened. Print paused.", overlay=True):
+                    return
+            else:
+                if dialog.WarningOk(self, "Door opened"):
+                    return
 
     ''' +++++++++++++++++++++++++++ Volterra VAS +++++++++++++++++++++++++++++++++++++ '''
 
@@ -903,16 +927,12 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         wlan0_config_file.truncate()
         ascii_ssid = self.wifiSettingsComboBox.currentText()
         # unicode_ssid = ascii_ssid.decode('string_escape').decode('utf-8')
-        wlan0_config_file.write(u"country=IN\n")
-        wlan0_config_file.write(u"ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n")
-        wlan0_config_file.write(u"update_config=1\n")
-        wlan0_config_file.write(u"\n")
         wlan0_config_file.write(u"network={\n")
-        wlan0_config_file.write(u'  ssid="' + str(ascii_ssid) + '"\n')
+        wlan0_config_file.write(u'ssid="' + str(ascii_ssid) + '"\n')
         if self.hiddenCheckBox.isChecked():
-            wlan0_config_file.write(u'  scan_ssid=1\n')
+            wlan0_config_file.write(u'scan_ssid=1\n')
         if str(self.wifiPasswordLineEdit.text()) != "":
-            wlan0_config_file.write(u'  psk="' + str(self.wifiPasswordLineEdit.text()) + '"\n')
+            wlan0_config_file.write(u'psk="' + str(self.wifiPasswordLineEdit.text()) + '"\n')
         wlan0_config_file.write(u'}')
         wlan0_config_file.close()
         signal = 'WIFI_RECONNECT_RESULT'
@@ -932,6 +952,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             self.wifiMessageBox.setLocalIcon('success.png')
             self.wifiMessageBox.setText('Connected, IP: ' + x)
             self.wifiMessageBox.setStandardButtons(QtGui.QMessageBox.Ok)
+            self.ipStatus.setText(x) #sets the IP addr. in the status bar
+
         else:
             self.wifiMessageBox.setText("Not able to connect to WiFi")
 
@@ -942,6 +964,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.hostname.setText(getHostname())
         self.wifiAp.setText(getWifiAp())
         self.wifiIp.setText("Not connected" if not ipWifi else ipWifi)
+        self.ipStatus.setText("Not connected" if not ipWifi else ipWifi)
         self.lanIp.setText("Not connected" if not ipEth else ipEth)
         self.wifiMac.setText(getMac(ThreadRestartNetworking.WLAN))
         self.lanMac.setText(getMac(ThreadRestartNetworking.ETH))
@@ -967,6 +990,25 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         scan_result = [s.strip('"') for s in scan_result]
         scan_result = filter(None, scan_result)
         return scan_result
+
+    @run_async
+    def setIPStatus(self):
+        '''
+        Function to update IP address of printer on the status bar. Refreshes at a particular interval.
+        '''
+        while(True):
+            try:
+                if getIP("eth0"):
+                    self.ipStatus.setText(getIP("eth0"))
+                elif getIP("wlan0"):
+                    self.ipStatus.setText(getIP("wlan0"))
+                else:
+                    self.ipStatus.setText("Not connected")
+
+            except:
+                self.ipStatus.setText("Not connected")
+            time.sleep(60)
+
 
     ''' +++++++++++++++++++++++++++++++++Ethernet Settings+++++++++++++++++++++++++++++ '''
 
@@ -1135,9 +1177,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
     ''' +++++++++++++++++++++++++++++++++Change Filament+++++++++++++++++++++++++++++++ '''
 
     def unloadFilament(self):
-        octopiclient.setToolTemperature({"tool1": filaments[str(
-            self.changeFilamentComboBox.currentText())]}) if self.activeExtruder == 1 else octopiclient.setToolTemperature(
-            {"tool0": filaments[str(self.changeFilamentComboBox.currentText())]})
+        if self.changeFilamentComboBox.findText("Loaded Filament") == -1:
+            octopiclient.setToolTemperature({"tool1": filaments[str(
+                self.changeFilamentComboBox.currentText())]}) if self.activeExtruder == 1 else octopiclient.setToolTemperature(
+                {"tool0": filaments[str(self.changeFilamentComboBox.currentText())]})
         self.stackedWidget.setCurrentWidget(self.changeFilamentProgressPage)
         self.changeFilamentStatus.setText("Heating Tool {}, Please Wait...".format(str(self.activeExtruder)))
         self.changeFilamentNameOperation.setText("Unloading {}".format(str(self.changeFilamentComboBox.currentText())))
@@ -1146,9 +1189,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.loadFlag = False
 
     def loadFilament(self):
-        octopiclient.setToolTemperature({"tool1": filaments[str(
-            self.changeFilamentComboBox.currentText())]}) if self.activeExtruder == 1 else octopiclient.setToolTemperature(
-            {"tool0": filaments[str(self.changeFilamentComboBox.currentText())]})
+        if self.changeFilamentComboBox.findText("Loaded Filament") == -1:
+            octopiclient.setToolTemperature({"tool1": filaments[str(
+                self.changeFilamentComboBox.currentText())]}) if self.activeExtruder == 1 else octopiclient.setToolTemperature(
+                {"tool0": filaments[str(self.changeFilamentComboBox.currentText())]})
         self.stackedWidget.setCurrentWidget(self.changeFilamentProgressPage)
         self.changeFilamentStatus.setText("Heating Tool {}, Please Wait...".format(str(self.activeExtruder)))
         self.changeFilamentNameOperation.setText("Loading {}".format(str(self.changeFilamentComboBox.currentText())))
@@ -1160,6 +1204,11 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.stackedWidget.setCurrentWidget(self.changeFilamentPage)
         self.changeFilamentComboBox.clear()
         self.changeFilamentComboBox.addItems(filaments.keys())
+        if self.tool0TargetTemperature > 0 and self.printerStatusText in ["Printing","Paused"]:
+            self.changeFilamentComboBox.addItem("Loaded Filament")
+            index = self.changeFilamentComboBox.findText("Loaded Filament")
+            if index >= 0 :
+                self.changeFilamentComboBox.setCurrentIndex(index)
 
     def changeFilamentCancel(self):
         self.changeFilamentHeatingFlag = False
@@ -1184,11 +1233,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
                 octopiclient.startPrint()
         elif self.printerStatusText == "Printing":
             octopiclient.pausePrint()
-            self.activeExtruderPrint = self.activeExtruder
         elif self.printerStatusText == "Paused":
-            if self.activeExtruderPrint != self.activeExtruder:  # if the active extruder was chanegd between the print, change it back
-                octopiclient.selectTool(self.activeExtruderPrint)
-            octopiclient.pausePrint()
+            octopiclient.resumePrint()
 
     def fileListLocal(self):
         '''
@@ -1396,19 +1442,17 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.chamberActualTemperatute.setText(str(int(temperature['chamberActual'])))  # + unichr(176))
         self.chamberTargetTemperature.setText(str(int(temperature['chamberTarget'])))  # + unichr(176))
 
-        if temperature['filboxActual'] > 40:
-            self.filboxTempBar.setMaximum(50)
-            self.filboxTempBar.setStyleSheet(styles.bar_heater_heating)
-        else:
+        if temperature['filboxTarget'] == 0:
             self.filboxTempBar.setMaximum(50)
             self.filboxTempBar.setStyleSheet(styles.bar_heater_cold)
+        elif temperature['filboxActual'] <= temperature['filboxTarget']:
+            self.filboxTempBar.setMaximum(temperature['filboxTarget'])
+            self.filboxTempBar.setStyleSheet(styles.bar_heater_heating)
+        else:
+            self.filboxTempBar.setMaximum(temperature['filboxActual'])
         self.filboxTempBar.setValue(temperature['filboxActual'])
         self.filboxActualTemperatute.setText(str(int(temperature['filboxActual'])))  # + unichr(176))
-        self.filboxTargetTemperature.setText(str(50))  # + unichr(176))
-
-
-
-
+        self.filboxTargetTemperature.setText(str(int(temperature['filboxTarget'])))  # + unichr(176))
 
 
         # updates the progress bar on the change filament screen
@@ -1609,6 +1653,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             # set button states
             # set octoprint if mismatch
 
+
     ''' +++++++++++++++++++++++++++++++++Control Screen+++++++++++++++++++++++++++++++ '''
 
     def control(self):
@@ -1620,7 +1665,6 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.bedTempSpinBox.setProperty("value", float(self.bedTargetTemperature.text()))
         self.chamberTempSpinBox.setProperty("value", float(self.chamberTargetTemperature.text()))
         self.filboxTempSpinBox.setProperty("value", float(self.filboxTargetTemperature.text()))
-
 
     def setStep(self, stepRate):
         '''
@@ -1665,7 +1709,8 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.toolTempSpinBox.setProperty("value", 0)
         self.bedTempSpinBox.setProperty("value", 0)
         self.chamberTempSpinBox.setProperty("value", 0)
-        self.chamberTempSpinBox.setProperty
+        self.filboxTempSpinBox.setProperty("value", 0)
+
 
     ''' +++++++++++++++++++++++++++++++++++Calibration++++++++++++++++++++++++++++++++ '''
 
@@ -1872,7 +1917,6 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         Warning: If the file is read-only, octoprint API for reading the file crashes.
         '''
 
-
         self.uploadThread = ThreadFileUpload(path, prnt=prnt)
         self.uploadThread.start()
         if prnt:
@@ -1899,6 +1943,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             os.system('sudo cp -f config/wpa_supplicant.conf /etc/wpa_supplicant/wpa_supplicant.conf')
             os.system('sudo rm -rf /home/pi/.octoprint/users.yaml')
             os.system('sudo rm -rf /home/pi/.octoprint/printerProfiles/*')
+            os.system('sudo rm -rf /home/pi/.octoprint/scripts/gcode')
             os.system('sudo cp -f config/config_Volterra400Dual.yaml /home/pi/.octoprint/config.yaml')
             self.tellAndReboot("Settings restored. Rebooting...")
 
@@ -1999,19 +2044,22 @@ class QtWebsocket(QtCore.QThread):
             if data["event"]["type"] == "Connected":
                 self.emit(QtCore.SIGNAL('CONNECTED'))
         if "plugin" in data:
-            if data["plugin"]["plugin"] == 'VolterraFilamentSensor':
-                # print(data["plugin"]["data"])
-                if "type" in data["plugin"]["data"] and data["plugin"]["data"]["type"] == "hmi_msg":
-                    self.emit(QtCore.SIGNAL('FILAMENT_SENSOR_TRIGGERED'), data["plugin"]["data"])
+            # if data["plugin"]["plugin"] == 'VolterraFilamentSensor':
+            #     # print(data["plugin"]["data"])
+            #     if "type" in data["plugin"]["data"] and data["plugin"]["data"]["type"] == "hmi_msg":
+            #         self.emit(QtCore.SIGNAL('FILAMENT_SENSOR_TRIGGERED'), data["plugin"]["data"])
 
-            if data["plugin"]["plugin"] == 'VolterraVAS':
-                # print(json.dumps(data["plugin"]["data"]))
-                # print(data["plugin"]["data"]["type"])
-                if "type" in data["plugin"]["data"]:
-                    if data["plugin"]["data"]["type"] == "door_state":
-                        self.emit(QtCore.SIGNAL('DOOR_LOCK_STATE'), data["plugin"]["data"])
-                    elif data["plugin"]["data"]["type"] == "hmi_msg":
-                        self.emit(QtCore.SIGNAL('DOOR_LOCK_MSG'), data["plugin"]["data"])
+            if data["plugin"]["plugin"] == 'VolterraServices':
+                self.emit(QtCore.SIGNAL('FILAMENT_SENSOR_TRIGGERED'), data["plugin"]["data"])
+
+            # if data["plugin"]["plugin"] == 'VolterraVAS':
+            #     # print(json.dumps(data["plugin"]["data"]))
+            #     # print(data["plugin"]["data"]["type"])
+            #     if "type" in data["plugin"]["data"]:
+            #         if data["plugin"]["data"]["type"] == "door_state":
+            #             self.emit(QtCore.SIGNAL('DOOR_LOCK_STATE'), data["plugin"]["data"])
+            #         elif data["plugin"]["data"]["type"] == "hmi_msg":
+            #             self.emit(QtCore.SIGNAL('DOOR_LOCK_MSG'), data["plugin"]["data"])
 
             if data["plugin"]["plugin"] == 'JuliaFirmwareUpdater':
                 self.emit(QtCore.SIGNAL('FIRMWARE_UPDATER'), data["plugin"]["data"])

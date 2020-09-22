@@ -824,8 +824,8 @@ class Ui_MainWindow(object):
         self.doorLockButton.setGeometry(QtCore.QRect(390, 111, 90, 100))
         self.doorLockButton.setMinimumSize(QtCore.QSize(0, 0))
         font = QtGui.QFont()
-        font.setFamily(_fromUtf8("Gotham Light"))
-        font.setPointSize(8)
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(7)
         self.doorLockButton.setFont(font)
         self.doorLockButton.setStyleSheet(_fromUtf8("QToolButton {\n"
 "    padding-top: 20px;\n"
@@ -874,7 +874,7 @@ class Ui_MainWindow(object):
         self.line_9.setObjectName(_fromUtf8("line_9"))
         self.virtualPrinterMode = QtGui.QLabel(self.homePage)
         self.virtualPrinterMode.setEnabled(False)
-        self.virtualPrinterMode.setGeometry(QtCore.QRect(440, 4, 41, 61))
+        self.virtualPrinterMode.setGeometry(QtCore.QRect(450, 0, 21, 31))
         font = QtGui.QFont()
         font.setPointSize(18)
         font.setBold(True)
@@ -882,13 +882,30 @@ class Ui_MainWindow(object):
         self.virtualPrinterMode.setFont(font)
         self.virtualPrinterMode.setStyleSheet(_fromUtf8("\n"
 "background-color: rgba(255, 255, 255, 0);\n"
-"color: rgb(255, 40, 10);\n"
+"color:  qlineargradient(spread:pad, x1:0.517, y1:0, x2:0.522, y2:0, stop:0.0336134 rgba(74, 183, 255, 255), stop:1 rgba(53, 173, 242, 255));;\n"
 "font-size: 18pt;\n"
-"font-weight: bold;"))
+"font-weight: bold;\n"
+""))
         self.virtualPrinterMode.setScaledContents(True)
         self.virtualPrinterMode.setAlignment(QtCore.Qt.AlignLeading|QtCore.Qt.AlignLeft|QtCore.Qt.AlignVCenter)
         self.virtualPrinterMode.setWordWrap(True)
         self.virtualPrinterMode.setObjectName(_fromUtf8("virtualPrinterMode"))
+        self.ipStatus = QtGui.QLabel(self.homePage)
+        self.ipStatus.setGeometry(QtCore.QRect(348, 50, 131, 20))
+        font = QtGui.QFont()
+        font.setFamily(_fromUtf8("Gotham"))
+        font.setPointSize(9)
+        font.setBold(False)
+        font.setUnderline(False)
+        font.setWeight(50)
+        font.setStrikeOut(False)
+        self.ipStatus.setFont(font)
+        self.ipStatus.setStyleSheet(_fromUtf8("\n"
+"background-color: rgba(255, 255, 255, 0);"))
+        self.ipStatus.setScaledContents(True)
+        self.ipStatus.setAlignment(QtCore.Qt.AlignRight|QtCore.Qt.AlignTop|QtCore.Qt.AlignTrailing)
+        self.ipStatus.setWordWrap(True)
+        self.ipStatus.setObjectName(_fromUtf8("ipStatus"))
         self.timeLeftLabel.raise_()
         self.printPreviewMain.raise_()
         self.statusBar.raise_()
@@ -935,6 +952,7 @@ class Ui_MainWindow(object):
         self.line_8.raise_()
         self.line_9.raise_()
         self.virtualPrinterMode.raise_()
+        self.ipStatus.raise_()
         self.stackedWidget.addWidget(self.homePage)
         self.MenuPage = QtGui.QWidget()
         self.MenuPage.setObjectName(_fromUtf8("MenuPage"))
@@ -8601,8 +8619,9 @@ class Ui_MainWindow(object):
         self.celciusLabel_5.setText(_translate("MainWindow", "°C", None))
         self.tool0TargetTemperature_2.setText(_translate("MainWindow", "0", None))
         self.tool0TargetTemperature_3.setText(_translate("MainWindow", "1", None))
-        self.doorLockButton.setText(_translate("MainWindow", "Unlock Door", None))
+        self.doorLockButton.setText(_translate("MainWindow", "Toggle Door", None))
         self.virtualPrinterMode.setText(_translate("MainWindow", "V", None))
+        self.ipStatus.setText(_translate("MainWindow", "Not Connected", None))
         self.menuControlButton.setText(_translate("MainWindow", "Control", None))
         self.menuPrintButton.setText(_translate("MainWindow", "Print", None))
         self.menuSettingsButton.setText(_translate("MainWindow", "Settings", None))
