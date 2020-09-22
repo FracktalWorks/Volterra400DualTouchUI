@@ -7,31 +7,94 @@ devel:
     enabled: true
     hasChamber: true
     hasFilbox: true
-    numExtruders: 2
+    numExtruders: 4
 plugins:
   VolterraFilamentSensor:
     _config_version: 2
   VolterraFirmwareUpdater:
     board_shortcode: 4D
+  VolterraServices:
+    _config_version: 2
+    contact_door_sensor: '0'
+    contact_extruder0: '0'
+    contact_extruder1: '0'
+    enabled_door_sensor: '0'
+    enabled_extruder0: '1'
+    enabled_extruder1: '1'
+    pause_print: '1'
+    sensor_enabled: '1'
+  JuliaTowerLight:
+    delay_off: '500'
+    delay_on: '500'
+    strobe: '0'
+    tower_enabled: '1'
+  Julia2018PrintRestore:
+    _config_version: 2
+    enableBabystep: true
+  discovery:
+    upnpUuid: b9219254-59a8-4c7e-8000-86c31b20ac99
+    firmwareupdater:
+      avrdude_avrmcu: m2560
+      avrdude_baudrate: '115200'
+      avrdude_path: /usr/bin/avrdude
+      avrdude_programmer: wiring
+      check_after_connect: false
+      dfuprog_avrmcu: ''
+      flash_method: avrdude
   softwareupdate:
     _config_version: 6
+printerProfiles:
+  default: _default
+  defaultProfile:
+    axes:
+      e:
+        inverted: false
+        speed: 300
+      x:
+        inverted: false
+        speed: 6000
+      y:
+        inverted: false
+        speed: 6000
+      z:
+        inverted: false
+        speed: 200
+    color: default
+    extruder:
+      count: 4
+      nozzleDiameter: 0.6
+      sharedNozzle: false
+    heatedBed: true
+    id: _default
+    model: Fracktal Works Volterra
+    name: Volterra 400
+    volume:
+      custom_box: false
+      depth: 400.0
+      formFactor: rectangular
+      height: 400.0
+      origin: lowerleft
+      width: 400.0
 serial:
   autoconnect: true
   baudrate: 115200
-  disconnectOnErrors: false
-  ignoreErrorsFromFirmware: true
-  log: true
-  port: /dev/ttyACM0
+  port: /dev/ttyUSB0
 server:
   commands:
     serverRestartCommand: sudo service octoprint restart
     systemRestartCommand: sudo reboot now
     systemShutdownCommand: sudo shutdown now
   firstRun: false
-  secretKey: iAwmTIdoJ8suaEewX118ZqGFplA5q5GN
+  host: 127.0.0.1
+  onlineCheck:
+    enabled: false
+  pluginBlacklist:
+    enabled: false
+  secretKey: 1QM9QG2FnNY6AvLbTZWZ8k6N5L1qKzqk
   seenWizards:
-    anywhere: 4
     corewizard: 3
+    cura: null
+    softwareupdate: null
 system:
   actions:
   - action: streamon
@@ -42,20 +105,10 @@ system:
     command: /home/pi/scripts/webcam stop
     confirm: false
     name: Stop video stream
-temperature:
-  profiles:
-  - bed: 100
-    chamber: null
-    extruder: 210
-    filbox: null
-    name: ABS
-  - bed: 60
-    chamber: null
-    extruder: 180
-    filbox: null
-    name: PLA
 webcam:
   ffmpeg: /usr/bin/avconv
   snapshot: http://127.0.0.1:8080/?action=snapshot
   stream: /webcam/?action=stream
   streamRatio: '4:3'
+
+
