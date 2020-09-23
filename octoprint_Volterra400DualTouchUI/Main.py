@@ -1702,7 +1702,10 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         Turns all heaters and fans off
         '''
         octopiclient.gcode(command='M107')
-        octopiclient.setToolTemperature({"tool0": 0, "tool1": 0,"tool2": 0, "tool3": 0})
+        octopiclient.gcode(command='M104 T0 S0')
+        octopiclient.gcode(command='M104 T1 S0')
+        octopiclient.gcode(command='M104 T2 S0')
+        octopiclient.gcode(command='M104 T3 S0')
         # octopiclient.setToolTemperature({"tool0": 0})
         octopiclient.setBedTemperature(0)
         #octopiclient.gcode(command='M141 S0')
