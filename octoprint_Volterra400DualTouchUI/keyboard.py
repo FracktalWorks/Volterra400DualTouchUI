@@ -42,11 +42,15 @@ class Keyboard(QtGui.QDialog):
     
     def appendTextAndFocus(self, text):
         # self.ui.tbDisplay.setText(self.ui.tbDisplay.toPlainText() + arg)
-        self.addText(text)
-        if self.ui.pageHolder.currentWidget() == self.ui.pgAlphaU:
-            if not self.mAlphaPinned:
-                self.ShowAlpha()
-        self.ui.tbDisplay.setFocus()
+        try:
+            self.addText(text)
+            if self.ui.pageHolder.currentWidget() == self.ui.pgAlphaU:
+                if not self.mAlphaPinned:
+                    self.ShowAlpha()
+            self.ui.tbDisplay.setFocus()
+        except Exception as e :
+            print "error Pressing Button: " + str(e)
+            self.ui = win_keyboard.Ui_WinKeyboard()
 
     def setTextFocus(self):
         self.ui.tbDisplay.moveCursor(QtGui.QTextCursor.End, QtGui.QTextCursor.MoveAnchor)

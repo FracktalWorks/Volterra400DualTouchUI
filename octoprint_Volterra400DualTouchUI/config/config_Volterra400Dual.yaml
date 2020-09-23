@@ -1,18 +1,60 @@
+accessControl:
+  enabled: false
 api:
+  enabled: true
   key: B508534ED20348F090B4D0AD637D3660
 appearance:
   name: Volterra 400 Dual
 devel:
-  virtualPrinter:
+  cache:
     enabled: true
-    hasChamber: true
-    hasFilbox: true
+    preemptive: true
+  stylesheet: css
+  virtualPrinter:
+    brokenM29: true
+    commandBuffer: 4
+    echoOnM117: true
+    enabled: true
+    extendedSdFileList: false
+    forceChecksum: false
+    hasBed: true
+    includeCurrentToolInTemps: true
+    includeFilenameInOpened: true
+    movementSpeed:
+      e: 300
+      x: 6000
+      y: 6000
+      z: 200
     numExtruders: 4
+    okAfterResend: false
+    okWithLinenumber: false
+    repetierStyleResends: false
+    repetierStyleTargetTemperature: false
+    rxBuffer: 64
+    sendWait: false
+    smoothieTemperatureReporting: false
+    supportM112: true
+    throttle: 0.01
+    waitInterval: 1
+  webassets:
+    bundle: true
+    clean_on_startup: true
+    minify: true
+feature:
+  sdSupport: false
+pluginmanager:
+  repository: http://plugins.octoprint.org/plugins.json
 plugins:
-  VolterraFilamentSensor:
-    _config_version: 2
-  VolterraFirmwareUpdater:
-    board_shortcode: 4D
+  _disabled:
+  - cura
+  announcements:
+    _blog: null
+    _important: null
+    _octopi: null
+    _plugins: null
+    _releases: null
+    channels: null
+    read_until: 1523285400
   VolterraServices:
     _config_version: 2
     contact_door_sensor: '0'
@@ -28,21 +70,6 @@ plugins:
     delay_on: '500'
     strobe: '0'
     tower_enabled: '1'
-  Julia2018PrintRestore:
-    _config_version: 2
-    enableBabystep: true
-  discovery:
-    upnpUuid: b9219254-59a8-4c7e-8000-86c31b20ac99
-    firmwareupdater:
-      avrdude_avrmcu: m2560
-      avrdude_baudrate: '115200'
-      avrdude_path: /usr/bin/avrdude
-      avrdude_programmer: wiring
-      check_after_connect: false
-      dfuprog_avrmcu: ''
-      flash_method: avrdude
-  softwareupdate:
-    _config_version: 6
 printerProfiles:
   default: _default
   defaultProfile:
@@ -67,7 +94,7 @@ printerProfiles:
     heatedBed: true
     id: _default
     model: Fracktal Works Volterra
-    name: Volterra 400
+    name: Volterra 400 Dual
     volume:
       custom_box: false
       depth: 400.0
@@ -110,5 +137,21 @@ webcam:
   snapshot: http://127.0.0.1:8080/?action=snapshot
   stream: /webcam/?action=stream
   streamRatio: '4:3'
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
