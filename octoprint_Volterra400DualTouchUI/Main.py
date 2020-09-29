@@ -1795,13 +1795,19 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         octopiclient.gcode(command='M500')
 
     def getToolOffset(self, M218Data):
+        if 'T1' in M218Data:
+            if 'Z' in M218Data:
+                self.toolOffsetZ = M218Data[M218Data.index('Z') + 1:].split(' ', 1)[0]
+                self.toolOffsetZDoubleSpinBox.setValue(float(self.toolOffsetZ))
+            if 'X' in M218Data:
+                self.toolOffsetX = M218Data[M218Data.index('X') + 1:].split(' ', 1)[0]
+                self.toolOffsetXDoubleSpinBox.setValue(float(self.toolOffsetX))
+            if 'Y' in M218Data:
+                self.toolOffsetY = M218Data[M218Data.index('Y') + 1:].split(' ', 1)[0]
+                self.toolOffsetYDoubleSpinBox.setValue(float(self.toolOffsetY))
 
-        self.toolOffsetZ = M218Data[M218Data.index('Z') + 1:].split(' ', 1)[0]
-        self.toolOffsetX = M218Data[M218Data.index('X') + 1:].split(' ', 1)[0]
-        self.toolOffsetY = M218Data[M218Data.index('Y') + 1:].split(' ', 1)[0]
-        self.toolOffsetXDoubleSpinBox.setValue(float(self.toolOffsetX))
-        self.toolOffsetYDoubleSpinBox.setValue(float(self.toolOffsetY))
-        self.toolOffsetZDoubleSpinBox.setValue(float(self.toolOffsetZ))
+
+
 
     def quickStep1(self):
         '''
