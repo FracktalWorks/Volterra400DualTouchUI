@@ -1350,7 +1350,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         '''
 
         if temperature['tool0Target'] == 0:
-            self.tool0TempBar.setMaximum(300)
+            self.tool0TempBar.setMaximum(390)
             self.tool0TempBar.setStyleSheet(styles.bar_heater_cold)
         elif temperature['tool0Actual'] <= temperature['tool0Target']:
             self.tool0TempBar.setMaximum(temperature['tool0Target'])
@@ -1362,7 +1362,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         self.tool0TargetTemperature.setText(str(int(temperature['tool0Target'])))
 
         if temperature['tool1Target'] == 0:
-            self.tool1TempBar.setMaximum(300)
+            self.tool1TempBar.setMaximum(390)
             self.tool1TempBar.setStyleSheet(styles.bar_heater_cold)
         elif temperature['tool1Actual'] <= temperature['tool0Target']:
             self.tool1TempBar.setMaximum(temperature['tool0Target'])
@@ -1416,7 +1416,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         if self.changeFilamentHeatingFlag:
             if self.activeExtruder == 0:
                 if temperature['tool0Target'] == 0:
-                    self.changeFilamentProgress.setMaximum(300)
+                    self.changeFilamentProgress.setMaximum(390)
                 elif temperature['tool0Target'] - temperature['tool0Actual'] > 1:
                     self.changeFilamentProgress.setMaximum(temperature['tool0Target'])
                 else:
@@ -1431,7 +1431,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
                 self.changeFilamentProgress.setValue(temperature['tool0Actual'])
             elif self.activeExtruder == 1:
                 if temperature['tool1Target'] == 0:
-                    self.changeFilamentProgress.setMaximum(300)
+                    self.changeFilamentProgress.setMaximum(390)
                 elif temperature['tool1Target'] - temperature['tool1Actual'] > 1:
                     self.changeFilamentProgress.setMaximum(temperature['tool1Target'])
                 else:
