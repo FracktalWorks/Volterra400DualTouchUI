@@ -927,6 +927,9 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
         wlan0_config_file.truncate()
         ascii_ssid = self.wifiSettingsComboBox.currentText()
         # unicode_ssid = ascii_ssid.decode('string_escape').decode('utf-8')
+        wlan0_config_file.write(u"ctrl_interface=DIR=/var/run/wpa_supplicant GROUP=netdev\n")
+        wlan0_config_file.write(u"update_config=1\n")
+        wlan0_config_file.write(u"country=IN\n")
         wlan0_config_file.write(u"network={\n")
         wlan0_config_file.write(u'ssid="' + str(ascii_ssid) + '"\n')
         if self.hiddenCheckBox.isChecked():
@@ -2232,7 +2235,7 @@ class ThreadRestartNetworking(QtCore.QThread):
                 break
             else:
                 attempt += 1
-                time.sleep(1)
+                time.sleep(2)
         if attempt >= 3:
             self.emit(QtCore.SIGNAL(self.signal), None)
 
@@ -2241,8 +2244,13 @@ class ThreadRestartNetworking(QtCore.QThread):
         restars wlan0 wireless interface to use new changes in wpa_supplicant.conf file
         :return:
         '''
-        subprocess.call(["ifdown", "--force", self.interface], shell=False)
-        subprocess.call(["ifup", "--force", self.interface], shell=False)
+        if self.interface == "wlan0":
+            subprocess.call(["wpa_cli","-i",  self.interface, "reconfigure"], shell=False)
+        if self.interface == "eth0":
+            subprocess.call(["ifconfig",  self.interface, "down"], shell=False)
+            time.sleep(1)
+            subprocess.call(["ifconfig", self.interface, "up"], shell=False)
+
         time.sleep(5)
 
 
