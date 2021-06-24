@@ -21,6 +21,10 @@ class Keyboard(QtGui.QDialog):
 
         self.ui.tbDisplay.setText(text)
         self.setTextFocus()
+        self.parent = parent
+        self.onlyNumeric = onlyNumeric
+        self.noSpace = noSpace
+        self.text = text
 
         self.ui.btBackNumeric.setEnabled(not onlyNumeric)
         self.ui.btSpecialNumeric.setEnabled(not onlyNumeric)
@@ -50,7 +54,7 @@ class Keyboard(QtGui.QDialog):
             self.ui.tbDisplay.setFocus()
         except Exception as e :
             print "error Pressing Button: " + str(e)
-            self.ui = win_keyboard.Ui_WinKeyboard()
+            self.close()
 
     def setTextFocus(self):
         self.ui.tbDisplay.moveCursor(QtGui.QTextCursor.End, QtGui.QTextCursor.MoveAnchor)
