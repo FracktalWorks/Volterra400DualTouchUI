@@ -613,6 +613,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
             else:
                 self.firmwareUpdateCheck()
         except:
+            print "error on Server Connected"
             pass
 
     ''' +++++++++++++++++++++++++Filament Sensor++++++++++++++++++++++++++++++++++++++ '''
@@ -1215,6 +1216,7 @@ class MainUiClass(QtGui.QMainWindow, mainGUI_volterra_400_dual.Ui_MainWindow):
 
     def changeFilamentCancel(self):
         self.changeFilamentHeatingFlag = False
+        self.firmwareUpdateCheck()
         self.coolDownAction()
         self.control()
 
