@@ -70,6 +70,8 @@ plugins:
     delay_on: '500'
     strobe: '0'
     tower_enabled: '1'
+  firmware_check:
+    ignore_infos: true
 printerProfiles:
   default: _default
   defaultProfile:
@@ -137,6 +139,7 @@ webcam:
   snapshot: http://127.0.0.1:8080/?action=snapshot
   stream: /webcam/?action=stream
   streamRatio: '4:3'
+  
 
 
 
