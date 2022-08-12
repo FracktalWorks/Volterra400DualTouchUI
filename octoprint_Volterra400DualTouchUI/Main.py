@@ -87,17 +87,19 @@ apiKey = 'B508534ED20348F090B4D0AD637D3660'
 
 file_name = ''
 Development = True
-filaments = {"ABS": 220,
-             "PLA": 200,
-             "NinjaFlex": 220,
-             "PolyCarbonate": 280,
-             "XT-Copolymer": 240,
-             "FilaFlex": 210,
-             "Nylon": 240,
-             "Scaffold": 210,
-             "WoodFill": 200,
-             "CopperFill": 180
-             }
+filaments = [
+                ("PLA", 220),
+                ("ABS", 240),
+                ("PETG", 240),
+                ("PVA", 230),
+                ("TPU", 240),
+                ("Nylon", 250),
+                ("PolyCarbonate", 265),
+                ("HIPS", 240),
+                ("WoodFill", 220),
+                ("CopperFill", 200),
+                ("Breakaway", 240)
+]     }
 
 
 calibrationPosition = {'X1': 340, 'Y1': 42,
